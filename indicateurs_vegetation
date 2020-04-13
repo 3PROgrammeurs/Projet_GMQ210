@@ -5,7 +5,7 @@ import numpy as np
 
 gdal.AllRegister()
 
-filename=r'alberta_2011.tiff'
+filename=r'https://github.com/3PROgrammeurs/Projet_GMQ210/blob/master/Sherbrooke%20-%20021e05_1_3.tif'
 
 ds=gdal.Open(filename, GA_ReadOnly)
 
