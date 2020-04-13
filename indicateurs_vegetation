@@ -1,1 +1,29 @@
+from osgeo import gdal
+import sys
+from gdalconst import *
+import numpy as np
 
+gdal.AllRegister()
+
+filename=r'alberta_2011.tiff'
+
+ds=gdal.Open(filename, GA_ReadOnly)
+
+if ds is None:
+    print('Problème avec la lecture')
+    sys.exit(1)
+
+cols=ds.RasterXSize
+rows=ds.RasterYSize
+bands=ds.RasterCount
+
+print(cols,rows,bands)
+
+band=ds.GetRasterBand(1)
+data=band.ReadAsArray(0,0,cols,rows)
+print(data.min())
+print(data.max())
+print(data.mean())
+
+hist,bin_edges=np.histogram(data,26)
+print(hist)
